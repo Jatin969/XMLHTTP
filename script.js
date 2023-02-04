@@ -6,12 +6,7 @@ const contentDisplay = document.getElementById("content-display");
 
 let req = new XMLHttpRequest();
 
-
-
 let data;
-function errorLog(e) {
-    console.log(e);
-}
 
 req.open("GET", "https://dog.ceo/api/breeds/list/all", true);
 req.onerror = (e) => {
@@ -66,10 +61,6 @@ breedSelector.addEventListener("change", function(e) {
 })
 
 function generalSearchRequest(count){
-    // console.log("GENERAL")
-    // console.log(`https://dog.ceo/api/breeds/image/random/${count}`);
-
-
     let request = new XMLHttpRequest();
     request.open("GET", `https://dog.ceo/api/breeds/image/random/${count}`, true);
     request.send();
@@ -81,10 +72,6 @@ function generalSearchRequest(count){
 }
 
 function withoutSubBreedSearch(breed, count){
-    // console.log("BREED ONLY")
-    // console.log(`https://dog.ceo/api/breed/${breed}/images/random/${count}`);
-
-
     let request = new XMLHttpRequest();
     request.open("GET", `https://dog.ceo/api/breed/${breed}/images/random/${count}`, true);
     request.send();
@@ -96,10 +83,6 @@ function withoutSubBreedSearch(breed, count){
 }
 
 function withSubBreedSearch(breed, subBreed, count){
-    // console.log("SUB BREED")
-    // console.log( `https://dog.ceo/api/breed/${breed}/${subBreed}/images/random/${count}`);
-
-
     let request = new XMLHttpRequest();
     request.open("GET", `https://dog.ceo/api/breed/${breed}/${subBreed}/images/random/${count}`, true);
     request.send();
@@ -130,18 +113,28 @@ function displayContent(content, count){
     }          
 }
 
-async function test(payload) {
-    try {
-      let response = await window.fetch(API, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      });
-  } catch(e){
-    console.error(e.message);
-  }
-}
+async function searchFetch(breed, subBreed, count){
+    let url = "";
+    if(breed === "any"){
+        url = `https://dog.ceo/api/breeds/image/random/${count}`;
+    }else if(breed !== "any" && subBreed === "any"){
+        url = `https://dog.ceo/api/breed/${breed}/images/random/${count}`;
+    }else if(breed !=="any" && subBreed !== "any"){
+        url = `https://dog.ceo/api/breed/${breed}/${subBreed}/images/random/${count}`;
+    }
 
+    fetch(url,{method : 'GET'})
+    .then(response => {
+        if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(function(response){
+        displayContent(response.message,count);
+    })
+    .catch(error => errorLog(error.message));
+}
 
 function search(breed, subBreed, count){
     if(breed === "any"){
@@ -153,10 +146,10 @@ function search(breed, subBreed, count){
     }
 }
 
-
+function errorLog(e) {
+    console.log(e);
+}
 
 searchButton.addEventListener("click",() => { 
-    // console.log("Button clicked")
-    search(breedSelector.value.toLowerCase(),subBreedSelector.value.toLowerCase(), numberSelector.value)
-    // console.log("task done.");
+    searchFetch(breedSelector.value.toLowerCase(),subBreedSelector.value.toLowerCase(), numberSelector.value)
 });
