@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>An Example for XMLHttpRequests</title>
+</head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="style.css"/>
+<body>   
+      <div class="container-lg">
+        <nav class="navbar bg-primary px-3">
+            <h3 class="d-flex align-items-center text-white">Dogs Application</h3>
+        </nav>
+        <div class="d-flex align-items-center justify-content-center bg-light">
+            <div class="w-auto  d-flex flex-row align-items-center h5 justify-content-center my-5 p-3 bg-white rounded border border-dark">                
+                
+                <div class="d-flex flex-column align-items-center justify-content-center mx-2">
+                    <p class="h6">Select the breed </p>
+                    <select id="select-breed" class="form-select form-select-lg  my-0 mx-1 " aria-label=".form-select-lg example">
+                        <option selected value="ANY"> ANY </option>
+                    </select>
+                </div>
+                <div class="d-flex flex-column align-items-center justify-content-center mx-2">
+                    <p class="h6">Select the Sub Breed</p>
+                    <select id="select-sub-breed" class="form-select form-select-lg my-0 mx-1" aria-label=".form-select-lg example">
+                        <option selected value="ANY"> ANY </option>
+                    </select>
+                </div>
+
+                <div class="d-flex flex-column align-items-center justify-content-center mx-2">
+                    <p class="h6">Select number of images</p>
+                <select id="select-numbers" class="form-select form-select-lg my-0 mx-1" aria-label=".form-select-lg example">
+                    <option selected value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                </div>
+    
+                <button id="search-button" type="button" class="btn btn-primary my-0 mx-1">
+                      <i class="fa fa-search"></i>
+                </button>   
+            </div>
+        </div>
+
+        <div id="content-display" class="card-deck d-flex w-100 overflow-hidden flex-row m-0">
+            
+        </div>
+
+          
+    </div>
+</body>
+<script src="script.js"></script>
+</html>

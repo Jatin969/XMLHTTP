@@ -1,0 +1,11 @@
+{
+  "name": "xmlhttp",
+  "version": "1.0.0",
+  "description": "Js Learining XMLHttpRequests and Fetch API with HOISTING",
+  "main": "script.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "",
+  "license": "ISC"
+}
